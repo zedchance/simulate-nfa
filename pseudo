@@ -1,0 +1,10 @@
+curStates = { startState }
+for ch = each character in the input
+   nextCurStates = { }
+   for each state in curStates
+      nextCurStates = nextCurStates union transition(state,ch)
+   curStates = nextCurStates
+if curStates intersect acceptStates is empty
+   return "reject"
+else
+   return "accept"
