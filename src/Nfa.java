@@ -84,18 +84,19 @@ public class Nfa
         Set<String> curStates = new HashSet<>(); // Holds states NFA could be in
         curStates.add(startState);               // Initially only the start state
 
-        // new HashSet for our next current states
-        Set<String> nextCurStates = new HashSet<>();
 
         // for each char in input
         for (int i = 0; i < input.length(); i++)
         {
+            // new HashSet for our next current states
+            Set<String> nextCurStates = new HashSet<>();
+
+            // convert char to String
+            String chStr = Character.toString(input.charAt(i));
+
             // for each state in curStates
             for (String state : curStates)
             {
-                // Convert char to String
-                String chStr = Character.toString(input.charAt(i));
-
                 // nextCurStates = nextCurStates union transition(state,ch)
                 nextCurStates.addAll(transition.get(state).get(chStr));
             }
