@@ -84,7 +84,6 @@ public class Nfa
         Set<String> curStates = new HashSet<>(); // Holds states NFA could be in
         curStates.add(startState);               // Initially only the start state
 
-
         // for each char in input
         for (int i = 0; i < input.length(); i++)
         {
@@ -97,8 +96,12 @@ public class Nfa
             // for each state in curStates
             for (String state : curStates)
             {
-                // nextCurStates = nextCurStates union transition(state,ch)
-                nextCurStates.addAll(transition.get(state).get(chStr));
+                // check if the transition is null
+                if (transition.get(state).get(chStr) != null)
+                {
+                    // nextCurStates = nextCurStates union transition(state,ch)
+                    nextCurStates.addAll(transition.get(state).get(chStr));
+                }
             }
             curStates = nextCurStates;
         }
